@@ -1,0 +1,52 @@
+<div class="relative my-10">
+  <div *ngIf="post$ | async as post" class="py-10">
+    <h1 class="mb-4 text-3xl font-medium text-center">{{ post.title }}</h1>
+    <p class="mb-3">{{ post.body }}</p>
+  </div>
+
+  <div *ngIf="comments$ | async as comments" class="border border-sky-200">
+    <p class="bg-sky-100 text-gray-950 p-2 font-semibold">Comments</p>
+    <div class="grid gap-2">
+      <app-comment-card
+        *ngFor="let comment of comments"
+        [comment]="comment"
+      ></app-comment-card>
+    </div>
+    <div *ngIf="isLoggedIn" class="m-2">
+      <div class="p-4 w-full flex space-x-4">
+        <textarea
+          name="newCommentText"
+          rows="1"
+          class="block w-full outline-none border border-gray-200 rounded-sm px-4 py-2 text-sm"
+          placeholder="Add Comment"
+          [(ngModel)]="newCommentText"
+        ></textarea>
+        <button
+          type="submit"
+          (click)="submitComment()"
+          class="cursor-pointer text-sm inline-block px-4 py-1 leading-normal bg-sky-600 text-white rounded shadow transition-all hover:bg-sky-800 hover:shadow-md"
+        >
+          Post
+        </button>
+      </div>
+    </div>
+    <div *ngIf="!isLoggedIn" class="p-4 text-center">
+      <p>Please <a (click)="redirectToLogin()" class="cursor-pointer text-sky-600 font-medium">log in</a> to post comments.</p>
+    </div>
+  </div>
+  <div class="my-4 text-left">
+    <a
+      (click)="back()"
+      class="cursor-pointer inline-block px-2 py-1 leading-normal bg-sky-600 text-white rounded shadow transition-all hover:bg-sky-800 hover:shadow-md"
+      >Back</a
+    >
+  </div>
+
+  <div class="loading w-full absolute inset-0 z-10 bg-white" *ngIf="loading$ | async">
+    <ng-container *ngFor="let item of [].constructor(5); let i = index">
+      <app-skeleton></app-skeleton>
+    </ng-container>
+  </div>
+</div>
+
+

@@ -1,0 +1,20 @@
+<header class="p-3 bg-sky-300 z-10 shadow-sm sticky top-0 left-0 w-full">
+  <div class="flex items-center justify-between">
+    <h6 class="text-lg">Blog application</h6>
+    <button
+      *ngIf="!isLoggedIn"
+      routerLink="/auth/login"
+      class="bg-sky-600 px-2 py-1 inline-block border-0 leading-normal rounded shadow outline-none text-white"
+    >
+      Login
+    </button>
+
+    <button
+      *ngIf="isLoggedIn"
+      (click)="logout()"
+      class="bg-sky-600 px-2 py-1 inline-block border-0 leading-normal rounded shadow outline-none text-white"
+    >
+      Logout
+    </button>
+  </div>
+</header>

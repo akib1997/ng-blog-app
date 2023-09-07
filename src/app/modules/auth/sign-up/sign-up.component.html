@@ -1,0 +1,134 @@
+<div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+  <h1
+    class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl"
+  >
+    Create account
+  </h1>
+  <p *ngIf="signupMessage" class="text-lg font-medium text-sky-600">
+    {{ signupMessage }}
+  </p>
+  <form class="space-y-4 md:space-y-6" [formGroup]="signUpForm">
+    <div>
+      <label
+        for="userName"
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >Username</label
+      >
+      <input
+        type="userName"
+        name="userName"
+        id="userName"
+        formControlName="userName"
+        class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg block w-full p-2.5"
+      />
+      <div
+        *ngIf="
+          signUpForm.get('userName')?.hasError('required') &&
+          signUpForm.get('userName')?.touched &&
+          signUpForm.get('userName')?.dirty
+        "
+        class="text-red-500 text-xs italic"
+      >
+        Username is required.
+      </div>
+      <div
+        *ngIf="
+          signUpForm.get('userName')?.hasError('minlength') &&
+          signUpForm.get('userName')?.touched
+        "
+        class="text-red-500 text-xs italic"
+      >
+        Username must be 4 characters.
+      </div>
+      <div
+        *ngIf="
+          signUpForm.get('userName')?.hasError('maxlength') &&
+          signUpForm.get('userName')?.touched
+        "
+        class="text-red-500 text-xs italic"
+      >
+        Username can't exceed 8 characters.
+      </div>
+    </div>
+    <div>
+      <label
+        for="password"
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >Password</label
+      >
+      <input
+        type="password"
+        name="password"
+        id="password"
+        formControlName="password"
+        class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg block w-full p-2.5"
+      />
+      <div
+        *ngIf="
+          signUpForm.get('password')?.hasError('required') &&
+          signUpForm.get('password')?.touched &&
+          signUpForm.get('password')?.dirty
+        "
+        class="text-red-500 text-xs italic"
+      >
+        Password is required.
+      </div>
+      <div
+        *ngIf="
+          signUpForm.get('password')?.hasError('minlength') &&
+          signUpForm.get('password')?.touched
+        "
+        class="text-red-500 text-xs italic"
+      >
+        Password must be 6 characters.
+      </div>
+      <div
+        *ngIf="
+          signUpForm.get('password')?.hasError('maxlength') &&
+          signUpForm.get('password')?.touched
+        "
+        class="text-red-500 text-xs italic"
+      >
+        Password can't exceed 8 characters.
+      </div>
+    </div>
+    <div>
+      <label
+        for="confirmPassword"
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >Confirm password</label
+      >
+      <input
+        type="confirmPassword"
+        name="confirmPassword"
+        id="confirmPassword"
+        formControlName="confirmPassword"
+        class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg block w-full p-2.5"
+      />
+      <div
+        class="text-red-500 text-xs italic"
+        *ngIf="signUpForm.get('confirmPassword')?.touched && signUpForm.errors?.['PasswordNoMatch']"
+      >
+        Password does'nt match.
+      </div>
+    </div>
+
+    <div class="py-4">
+      <button
+        type="submit"
+        (click)="signUp()"
+        class="w-full text-white bg-sky-600 hover:bg-sky-700 focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800"
+      >
+        Create an account
+      </button>
+    </div>
+    <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+      Already have an account?
+      <a
+        routerLink="/auth/login"
+        class="font-medium text-sky-600 hover:underline dark:text-sky-500"
+        >Login here</a
+      >
+    </p>
+  </form>
+</div>

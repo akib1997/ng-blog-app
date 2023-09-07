@@ -1,0 +1,33 @@
+<div class="relative">
+  <h1 class="text-3xl font-medium mb-4 text-center">Latest Blogs</h1>
+  <div class="columns-2 gap-4" *ngIf="posts$ | async as posts">
+    <app-post-card
+      *ngFor="let post of posts"
+      [post]="post"
+      class="block mb-4"
+    ></app-post-card>
+  </div>
+  <div class="flex space-x-4 items-center justify-center my-6">
+    <button
+      [disabled]="this.currentPage === 0"
+      (click)="changePage(-1)"
+      class="inline-block px-2 py-1 leading-normal bg-sky-600 text-white rounded shadow transition-all hover:bg-sky-800 hover:shadow-md"
+    >
+      Prev
+    </button>
+    <button
+      (click)="changePage(1)"
+      class="inline-block px-2 py-1 leading-normal bg-sky-600 text-white rounded shadow transition-all hover:bg-sky-800 hover:shadow-md"
+    >
+      Next
+    </button>
+  </div>
+  <div
+    class="loading w-full absolute inset-0 z-10 bg-white"
+    *ngIf="loading$ | async"
+  >
+    <ng-container *ngFor="let item of [].constructor(10); let i = index">
+      <app-skeleton></app-skeleton>
+    </ng-container>
+  </div>
+</div>
