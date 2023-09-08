@@ -73,7 +73,7 @@ export class PostComponent implements OnInit {
   }
 
   back(): void {
-    this.navigateService.goBack();
+    this.navigateService.toApp();
   }
 }
 

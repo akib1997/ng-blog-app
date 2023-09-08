@@ -1,6 +1,6 @@
-<div class="relative my-10">
-  <div *ngIf="post$ | async as post" class="py-10">
-    <h1 class="mb-4 text-3xl font-medium text-center">{{ post.title }}</h1>
+<div class="relative my-10 max-w-3xl w-full mx-auto">
+  <div *ngIf="post$ | async as post">
+    <h1 class="mb-4 text-3xl font-medium text-center capitalize">{{ post.title }}</h1>
     <p class="mb-3">{{ post.body }}</p>
   </div>
 

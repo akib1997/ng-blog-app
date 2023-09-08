@@ -1,11 +1,19 @@
-<div class="relative">
-  <h1 class="text-3xl font-medium mb-4 text-center">Latest Blogs</h1>
+<div class="relative my-6">
+  <h1 class="text-3xl font-medium mb-6 text-center">Latest Blogs</h1>
   <div class="columns-2 gap-4" *ngIf="posts$ | async as posts">
     <app-post-card
       *ngFor="let post of posts"
       [post]="post"
       class="block mb-4"
     ></app-post-card>
+  </div>
+  <div
+    class="loading w-full absolute inset-0 z-10 bg-white"
+    *ngIf="loading$ | async"
+  >
+    <ng-container *ngFor="let item of [].constructor(10); let i = index">
+      <app-skeleton></app-skeleton>
+    </ng-container>
   </div>
   <div class="flex space-x-4 items-center justify-center my-6">
     <button
@@ -21,13 +29,5 @@
     >
       Next
     </button>
-  </div>
-  <div
-    class="loading w-full absolute inset-0 z-10 bg-white"
-    *ngIf="loading$ | async"
-  >
-    <ng-container *ngFor="let item of [].constructor(10); let i = index">
-      <app-skeleton></app-skeleton>
-    </ng-container>
   </div>
 </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavigateService } from '@app/services/navigate/navigate.service';
 
 @Component({
   selector: 'app-auth',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private navigateService: NavigateService
+  ) { }
 
   ngOnInit(): void {
+    this.navigateService.toLogin();
   }
 
 }

@@ -6,7 +6,6 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Login } from '@app/models/login.model';
 import { SignUp } from '@app/models/sign-up.model';
 import { User } from '@app/models/user.model';
 import { AuthService } from '@app/services/auth/auth.service';
@@ -22,6 +21,7 @@ export class SignUpComponent implements OnInit {
   loading = false;
   signUpForm: FormGroup<SignUpForm>;
   signupMessage = '';
+
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -65,10 +65,6 @@ export class SignUpComponent implements OnInit {
       },
       { validators: [confirmPasswordValidator] }
     );
-
-    // this.signUpForm.valueChanges.subscribe({
-    //   next: (res) => console.log(res),
-    // });
   }
 }
 

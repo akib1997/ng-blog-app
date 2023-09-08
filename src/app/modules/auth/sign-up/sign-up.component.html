@@ -7,11 +7,13 @@
   <p *ngIf="signupMessage" class="text-lg font-medium text-sky-600">
     {{ signupMessage }}
   </p>
-  <form class="space-y-4 md:space-y-6" [formGroup]="signUpForm">
+  <form
+    class="space-y-4 md:space-y-6"
+    [formGroup]="signUpForm"
+    [ngClass]="{ 'opacity-50 pointer-events-none': loading === true }"
+  >
     <div>
-      <label
-        for="userName"
-        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+      <label for="userName" class="block mb-2 text-sm font-medium text-gray-900"
         >Username</label
       >
       <input
@@ -51,9 +53,7 @@
       </div>
     </div>
     <div>
-      <label
-        for="password"
-        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+      <label for="password" class="block mb-2 text-sm font-medium text-gray-900"
         >Password</label
       >
       <input
@@ -95,11 +95,11 @@
     <div>
       <label
         for="confirmPassword"
-        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        class="block mb-2 text-sm font-medium text-gray-900"
         >Confirm password</label
       >
       <input
-        type="confirmPassword"
+        type="password"
         name="confirmPassword"
         id="confirmPassword"
         formControlName="confirmPassword"
@@ -107,7 +107,7 @@
       />
       <div
         class="text-red-500 text-xs italic"
-        *ngIf="signUpForm.get('confirmPassword')?.touched && signUpForm.errors?.['PasswordNoMatch']"
+        *ngIf="signUpForm.get('confirmPassword')?.touched && signUpForm.errors?.['passwordNoMatch'] && signUpForm.get('password')?.valid"
       >
         Password does'nt match.
       </div>

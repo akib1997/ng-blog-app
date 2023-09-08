@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
   loading = false;
   loginForm: FormGroup<LoginForm>;
   signupMessage = '';
+
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -61,10 +62,6 @@ export class LoginComponent implements OnInit {
       userName: this.fb.control(null, [required, minLength(4), maxLength(8)]),
       password: this.fb.control(null, [required, minLength(6), maxLength(8)]),
     });
-
-    // this.signUpForm.valueChanges.subscribe({
-    //   next: (res) => console.log(res),
-    // });
   }
 }
 
