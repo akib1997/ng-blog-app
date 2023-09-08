@@ -1,12 +1,18 @@
-<header class="p-3 bg-gray-100 z-10 shadow- md border-b border-gray-300 sticky top-0 left-0 w-full">
+<header
+  class="p-3 bg-gray-100 z-10 shadow- md border-b border-gray-300 sticky top-0 left-0 w-full"
+>
   <div class="flex items-center justify-between">
-    <h6 class="text-xl text-sky-800 font-medium capitalize">
+    <div class="flex items-center">
       <img
         class="w-8 h-8 mr-2"
         src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg"
         alt="logo"
       />
-      Blog application</h6>
+      <h6 class="text-xl text-sky-800 font-medium capitalize">
+        Blog application
+      </h6>
+    </div>
+
     <button
       *ngIf="!isLoggedIn"
       routerLink="/auth/login"
