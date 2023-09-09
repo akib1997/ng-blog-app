@@ -1,6 +1,6 @@
 <div class="relative my-6">
   <h1 class="text-3xl font-medium mb-6 text-center">Latest Blogs</h1>
-  <div class="columns-2 gap-4" *ngIf="posts$ | async as posts">
+  <div class="md:columns-2 gap-4" *ngIf="posts$ | async as posts">
     <app-post-card
       *ngFor="let post of posts"
       [post]="post"
